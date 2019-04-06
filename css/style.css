@@ -1,0 +1,119 @@
+
+
+html, body, #map {
+  height: 800px;
+
+}
+#map{
+  width: 70%;
+  float: left;
+  border-style: double
+}
+
+#panel {
+  float: right;
+  width: 26%;
+  padding: 20px;
+  /* display: inline-block; */
+  vertical-align: top;
+  text-align: center;
+  line-height: 30px;
+  background-color: white;
+  /* border-style: double  */
+}
+
+body {
+    /* background: linear-gradient(to right, #ffff66, #ffffcc); */
+    background-color: #f7f7f7;
+    border-radius: 6px;
+    height: 120px;
+  font-family: Verdana;
+}
+
+.leaflet-popup-content p {
+    margin: 0.2em 0;
+}
+
+.legend-control-container {
+	width: 150px;
+    height: 100px;
+	background-color: rgba(255,255,255,0.8);
+    padding: 15px;
+    line-height: 45px;
+    text-align: center;
+    border: solid black 1px;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 1em;
+	
+/* #temporal-legend {
+	width: 100px;
+    height: 50px;
+    background-color: rgba(255,255,255,0.8);
+    padding: 10px;
+    line-height: 45px;
+    text-align: center;
+    border: solid gray 1px;
+	
+} */
+	
+}
+
+
+
+
+.leaflet-popup-content p {
+    margin: 0.2em 0;
+}
+
+#forward {
+    float: right;
+    
+    
+}
+
+#reverse {
+    float: left;
+    
+    
+}
+
+.sequence-control-container {
+    width: 350px;
+    height: 30px;
+    background-color: rgba(255,255,255,0.8);
+    padding: 10px;
+    line-height: 45px;
+    text-align: center;
+    border: solid gray 1px;
+    margin-bottom: 30px !important;
+}
+
+.range-slider {
+    width: 200px;
+}
+
+#header {
+  color:#ffd204;
+  -webkit-text-stroke-color: #9b1e25;
+  -webkit-text-stroke-width: 1px;
+  /* border-color: #9b1e25; */
+  text-align: center;
+	font-size: 2em;
+  font-family: "Guardian Egyptian Web",Georgia,serif;
+  padding: 0;
+}
+
+#header2 {
+  padding: 0;
+  text-align: center;
+  font-size: 1em;
+  font-family: Georgia, 'Times New Roman', Times, serif
+}
+
+#sources {
+  font-size: .9em;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 10px;
+  color: blue;
+  opacity: .8;
+}
