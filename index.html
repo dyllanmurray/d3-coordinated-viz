@@ -1,37 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-            <!-- <img src="../leaflet-lab/mtns.jpg" alt="mtns" height="auto"></img> -->
 
+<html lang="en">
+	
+	<head>
+	
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width">
-		<title>Dyllan Murray Lab 2</title>
+		<title>Dyllan Murray D3 Lab</title>
+		<!-- External Stylesheet Links -->
+		<link rel="stylesheet" href="css/style.css">
+	</head>
 
-		<!--put your external stylesheet links here-->
-        <link rel="stylesheet" href="lib/leaflet/leaflet.css"
-        crossorigin=""/>
-        <link rel="stylesheet" href="css/style.css"
-        crossorigin=""/>
-        <script type="text/javascript" src="lib/d3.js/"></script>
-        <script type="text/javascript" src="lib/d3-queue/d3-queue.js"></script>
-        <script type="text/javascript" src="lib/topojson/topojson.js"></script>
-        <script type="text/javascript" src="lib/simple-statistics.min.js"></script>
-	          
-    </head>
+	<body>
+		<h1 style="text-align:center;">Public Lands in the United States</h1>
 
-	<body>    
-    </body>
-    
-    <!--you can also use this space for internal scripts or stylesheets;
-		place these within <script> or <style> tags-->
+		<p style="text-align:left;
+		margin-left:5em;">
+		"The nation behaves well if it treats the natural resources as assets which it must turn over to the next generation increased and not impaired in value. Conservation means development as much as it does protection." -Theodore Roosevelt This map explores the public lands in each state across the country. 	
+	</p>
+	<div id=sources>
+			<h2> https://www.nrcm.org/documents/publiclandownership.pdf </h2>
+		</div>
 
-	<!--put your external script links here-->
-   	<script type="text/javascript" src="lib/jquery-3.3.1.js"></script>
-       <script src="lib/leaflet/leaflet.js"
-       crossorigin=""></script>    
-       <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
-       <script type="text/javascript" src="js/main.js"></script>
-       <!-- <script type= 'text/javascript' src='js/geojson.js'></script> -->
-                
-     
+		<div id="mapTitle">
+		
+		</div>
+		<div id="map">
+		</div>
+	
+
+		<script type="text/javascript" src="lib/jquery-3.1.1.js"></script>
+		<script type="text/javascript" src="lib/d3.js"></script>
+		<script type="text/javascript" src="lib/topojson.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+	</body>
+
 </html>

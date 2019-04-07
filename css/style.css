@@ -1,119 +1,173 @@
+.axis path,
+.axis line {
+	fill: none;
+	stroke: black;
+	stroke-width: 1px;
+	shape-rendering: crispEdges;
+}
 
+.axis text {
+	font-family: sans-serif;
+	font-size: 0.9em;
+}
+
+.mapTitle,#mapTitle {
+	top: 100;
+	/* border-top-width: 100;*/
+	color: green;
+	font-size: 35px; 
+	/* background-color: black; */
+}
+
+/* Add Tuesday, 4-Apr-17 */
 
 html, body, #map {
-  height: 800px;
-
-}
-#map{
-  width: 70%;
-  float: left;
-  border-style: double
-}
-
-#panel {
-  float: right;
-  width: 26%;
-  padding: 20px;
-  /* display: inline-block; */
-  vertical-align: top;
-  text-align: center;
-  line-height: 30px;
-  background-color: white;
-  /* border-style: double  */
+	color: black;
+	width: 100%;
+	/* height: : 100%; */
+	border-top-width: 100;
+	margin: 100;
+	padding: 0;
+ 	background-color: rgba(170, 231, 191, 0.2);
 }
 
-body {
-    /* background: linear-gradient(to right, #ffff66, #ffffcc); */
-    background-color: #f7f7f7;
-    border-radius: 6px;
-    height: 120px;
-  font-family: Verdana;
+.tick {
+	color: black;
+	font-size: 10px;
 }
 
-.leaflet-popup-content p {
-    margin: 0.2em 0;
+.title {
+	font-family: sans-serif;
+	font-size: 1.5em;
+	font-weight: bold;
 }
 
-.legend-control-container {
-	width: 150px;
-    height: 100px;
-	background-color: rgba(255,255,255,0.8);
-    padding: 15px;
-    line-height: 45px;
-    text-align: center;
-    border: solid black 1px;
-	font-family: Verdana, Geneva, sans-serif;
-	font-size: 1em;
-	
-/* #temporal-legend {
-	width: 100px;
-    height: 50px;
-    background-color: rgba(255,255,255,0.8);
-    padding: 10px;
-    line-height: 45px;
-    text-align: center;
-    border: solid gray 1px;
-	
-} */
+/* State Outlines */
+.state {
+	stroke: #000;
+	stroke-width: 0.5px;
+	stroke-linecap: round;
+}
+
+/* Map frame margin */
+.map {
+	border: medium solid #999;
+	margin: 10px 0 0 20px;
+}
+
+/* Chart frame styles */
+.chart {
+	float: right;
+	margin: 7px 20px 0 0;
+	border: medium solid #999;
+	float: right;
+	margin: 10px 20px 0 0;
+}
+
+*.bar {
+	z-index: -1;
 	
 }
-
-
-
-
-.leaflet-popup-content p {
-    margin: 0.2em 0;
+.bar WA {
+	z-index: -1;
 }
 
-#forward {
-    float: right;
-    
-    
+.chartTitle {
+	font-family: sans-serif;
+	font-size: 1.0em;
+	font-weight: bold;
+	z-index: 100;
 }
 
-#reverse {
-    float: left;
-    
-    
+/* comment out Tuesday, 4-apr-17 */
+
+.chartBackground {
+	fill: rgba(247, 241, 241, 0.2); /* 4-apr-17 */
+	
+	/* background-color: gray; */	/* this makes chart background black */
 }
 
-.sequence-control-container {
-    width: 350px;
-    height: 30px;
-    background-color: rgba(255,255,255,0.8);
-    padding: 10px;
-    line-height: 45px;
-    text-align: center;
-    border: solid gray 1px;
-    margin-bottom: 30px !important;
+.chartFrame {
+	fill: none;
+	stroke: #999;
+	stroke-width: 3px;
+	shape-rendering: crispEdges;
 }
 
-.range-slider {
-    width: 200px;
+.axis path,
+.axis line {
+	fill: none;
+	stroke: #999;
+	stroke-width: 1px;
+	shape-rendering: crispEdges;
+	
 }
 
-#header {
-  color:#ffd204;
-  -webkit-text-stroke-color: #9b1e25;
-  -webkit-text-stroke-width: 1px;
-  /* border-color: #9b1e25; */
-  text-align: center;
-	font-size: 2em;
-  font-family: "Guardian Egyptian Web",Georgia,serif;
-  padding: 0;
+.axis text {
+	font-family: sans-serif;
+	color: black; 
+	font-size: 0.8em;
+	fill: #999;
 }
 
-#header2 {
-  padding: 0;
-  text-align: center;
-  font-size: 1em;
-  font-family: Georgia, 'Times New Roman', Times, serif
+/* Chart Text/Numbers */
+.numbers {
+	font-size: 9px;
+	color: darkgreen;
+	font-family: sans-serif;
+}
+
+/* Attribute Selection Dropdown Menu */
+.dropdown {
+	position: absolute;
+	top: 200px;			
+	left: 40px;		
+	z-index: 10;
+	font-family: sans-serif;
+	font-size: .8em;
+	font-weight: bold;
+	padding: 2px;
+	border: 1px solid #999;
+	box-shadow: 2px 2px 4px #999;
+	
+}
+option {
+	font-weight: normal;
+}
+
+/* Label styles */
+.infolabel {
+	position: absolute;
+	height: 50px;
+	min-width: 90px;
+	color: #fff;
+	background-color: #8b8484;
+	border: solid thin #fff;
+	padding: 5px 10px;
+	font-family: roboto;
+	
+	/* top: -75px;	*/	/* hides the label to avoid flicker */
+}
+
+.infolabel h1 {
+	margin: 0 20px 0 0;
+	font-size: 20px;
+	padding: 0;
+	display: inline-block;
+	line-height: 1em;
+	
+}
+.gratLines {
+    fill: none;
+    stroke: #999;
+    stroke-width: 1px;
 }
 
 #sources {
-  font-size: .9em;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 10px;
-  color: blue;
-  opacity: .8;
+	position: absolute;
+	bottom: 100px;			
+	right: 40px;		
+	z-index: 10;
+	
 }
+
