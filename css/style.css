@@ -13,18 +13,15 @@
 
 .mapTitle,#mapTitle {
 	top: 100;
-	/* border-top-width: 100;*/
 	color: green;
 	font-size: 35px; 
-	/* background-color: black; */
 }
 
-/* Add Tuesday, 4-Apr-17 */
 
-html, body, #map {
+
+html, #map {
 	color: black;
 	width: 100%;
-	/* height: : 100%; */
 	border-top-width: 100;
 	margin: 100;
 	padding: 0;
@@ -42,20 +39,18 @@ html, body, #map {
 	font-weight: bold;
 }
 
-/* State Outlines */
+
 .state {
 	stroke: #000;
 	stroke-width: 0.5px;
 	stroke-linecap: round;
 }
 
-/* Map frame margin */
 .map {
 	border: medium solid #999;
 	margin: 10px 0 0 20px;
 }
 
-/* Chart frame styles */
 .chart {
 	float: right;
 	margin: 7px 20px 0 0;
@@ -66,7 +61,6 @@ html, body, #map {
 
 *.bar {
 	z-index: -1;
-	
 }
 .bar WA {
 	z-index: -1;
@@ -79,12 +73,8 @@ html, body, #map {
 	z-index: 100;
 }
 
-/* comment out Tuesday, 4-apr-17 */
-
 .chartBackground {
-	fill: rgba(247, 241, 241, 0.2); /* 4-apr-17 */
-	
-	/* background-color: gray; */	/* this makes chart background black */
+	fill: rgba(247, 241, 241, 0.2);
 }
 
 .chartFrame {
@@ -110,14 +100,11 @@ html, body, #map {
 	fill: #999;
 }
 
-/* Chart Text/Numbers */
 .numbers {
 	font-size: 9px;
 	color: darkgreen;
 	font-family: sans-serif;
 }
-
-/* Attribute Selection Dropdown Menu */
 .dropdown {
 	position: absolute;
 	top: 200px;			
@@ -134,8 +121,6 @@ html, body, #map {
 option {
 	font-weight: normal;
 }
-
-/* Label styles */
 .infolabel {
 	position: absolute;
 	height: 50px;
@@ -145,8 +130,6 @@ option {
 	border: solid thin #fff;
 	padding: 5px 10px;
 	font-family: roboto;
-	
-	/* top: -75px;	*/	/* hides the label to avoid flicker */
 }
 
 .infolabel h1 {
@@ -165,9 +148,8 @@ option {
 
 #sources {
 	position: absolute;
-	bottom: 100px;			
-	right: 40px;		
-	z-index: 10;
+	bottom: 1px;			
+	right: 30px;
 	
 }
 

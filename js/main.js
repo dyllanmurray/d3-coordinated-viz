@@ -34,64 +34,37 @@ function setMap(){
 	var projection = d3.geoAlbers()
 		.center([3.5,38]) 
 		.rotate([101.64,4.55,0])
-		.scale(1100)
+		// .scale()
 		.translate([width /2, height / 2]);
+
 	var path = d3.geoPath()
 		.projection(projection);
 	//* Use queue to parallelize asynchronous data loading
 	d3.queue() 
 		.defer(d3.csv, "data/pubLand.csv") 	// Load attributes
 		.defer(d3.json,"data/US_States.topojson")	// Load choropleth data
-	
-		//* The callback function fires when all the data has loaded 
-		//* Data is then sent to the callback() function
 		.await(callback);
 	
 		
-	//* This function is called when the data has loaded
+	//This function is called when the data has loaded
 	function callback(error, csvData,usStates) {
-		// console.log("in callback(): Error: ",error);
 		setGraticule(map, path);
-		console.log("++++++  in callback(): csvData: ",csvData);
-		console.log("++++++ in callback(): USA: ",usStates);
-		
-		console.log(" converting back to geoJSON ...");
-		
-		//* Case Sensitive!
-		
-		//* -----------------------------------------------
-		//* Convert the topoJSON back to geoJSON features
-		
-		//* usStates = variable containing converted objects
-		//* US_States = name of the *.topoJSON file
-		//* -----------------------------------------------
 		var usStates = topojson.feature(usStates, usStates.objects.US_States).features;
 		
-		
-		//* Join CSV Data to US Shapes 
+		//Join CSV Data to US Shapes 
 		usStates = joinData(usStates,csvData);
 		
-		
-		//* Create the color scale
+		//Create the color scale
 		var colorScale = makeColorScale(csvData);
 		
-		//* Add enumerations units to the map 
-		//* Draw the actual state polygons
+		//Add enumerations units to the map 
 		setEnumerationUnits(usStates, map, path,colorScale);
-		
-		
-		//* Add Chart to the map and display bars in the chart
-		setChart(csvData,colorScale);
-		
-		//* Display Menu to Make Attribute Selection
-		createDropdown(csvData);
-		
-		console.log(" +++  drawing state boundaries ++++ ");
-		
 
-		
-		console.log(" done drawing the United States Polygons ...");
-		
+		//Add Chart to the map and display bars in the chart
+		setChart(csvData,colorScale);
+	
+		createDropdown(csvData);
+	
 	};  //* end callback()
 
 	function setGraticule(map, path){
@@ -113,40 +86,25 @@ function setMap(){
         .attr("d", path); //project graticule lines
     };
 
-	
 	function setEnumerationUnits(usStates, map, path, colorScale) {
-			
-		console.log("in setEnumerations()");
 		
-		console.log(" +++  drawing state boundaries ++++ ");
-
-		// var usa2 = map.selectAll(".State")		
-		var usa2 = map.selectAll(".STATE_ABBR")	
+		var usa = map.selectAll(".STATE_ABBR")	
 			.data(usStates)
 			.enter()
 			.append("path")
 			.attr("class",function(d) {
-				
+
 				//* Print state name
 				console.log("state: ",d.properties.State, " STATE_ABBR: ", d.properties.STATE_ABBR)
-
 				return "state " + d.properties.STATE_ABBR;	
 				
 			})
 			.attr("d",path)
-		
-			//* This is where each state gets drawn a specific color
-		
 			.style("fill", function colorStates(d) {
 				// return colorScale(d.properties[expressed]);
 				return choropleth(d.properties,colorScale);
 				
-			})
-			
-			//* Add mouseover event listener for map
-			//* Pass 'properties' object to anonymous function to 
-			//* call 'highlight()' function
-		
+			})	
 			.on("mouseover",function(d) {
 				highlight(d.properties);
 			})
@@ -157,34 +115,20 @@ function setMap(){
 		
 			//* listener for labeling each state or bar
 			.on("mousemove", moveLabel);
-		
-		
 		//* Add a style descriptor to each path 
-		var desc = usa2.append("desc")
+		var desc = usa.append("desc")
 			.text('{"stroke": "#000", "stroke-widht": "0.5px"}');
-		
-			
-		
-		
+
 	}; //* end setEnumerationUnits()
 	
-	
 	function joinData(usStates,csvData) {
-		
-		console.log("in joinData() ... ")
 		
 		//* Columns used to Join data to US States
 		var attrArray = ["Total Area of State", "Acres owned by Fed Gov't", "% of State's Total Area Federally Owned","Acres Owned by State", "% of State's Total Area State Owned", "BLM", "USFS", "NPS", "NWR", "Army Corps Engineers", "Military Bases", "Tribal Lands"];
 
 		var expressed = attrArray[1];	// initial attribute
 		
-		console.log(" done Converting to geoJSON: ", usStates);
-		
-		console.log(" draw the United States Polygons");
-		
 		//* Draw the United States
-
-	
 		//* Loop through csv to assign each set of csv attribute 
 		//* values to geojson State
 		for (var i = 0; i < csvData.length; i++){
@@ -197,13 +141,8 @@ function setMap(){
 			var csvKey = csvState.STATE_ABBR;
 			
 			var test = usStates[i].properties;
-		
-		
-			
 			//* Loop through the US States to find matching attribute
 			for (var a = 0; a < usStates.length; a++){
-
-			
 				//* Current US State 
 				var geojsonProps = usStates[a].properties;
 			
@@ -211,10 +150,7 @@ function setMap(){
 				var geojsonKey = geojsonProps.STATE_ABBR;
 			
 			
-				if (geojsonKey == csvKey) {
-				
-					console.log("Match found ...");
-				
+				if (geojsonKey == csvKey) {	
 					attrArray.forEach(function(attr) {
 					
 						//* Get CSV attribute value
@@ -256,17 +192,9 @@ function makeColorScale(data) {
 	};
 	//* Assign array of expressed values as scale domain
 	colorScale.domain(domainArray);
-	
-	
-	console.log("Colorscale: ", colorScale.quantiles());
-	
+
 	return colorScale;
-	
-	
-}; //* end makeColorScale()
-
-
-	
+};
 //* Draw Chart with Y Axis
 function setChart(csvData,colorScale) {
 	var chart = d3.select("body")
@@ -281,42 +209,25 @@ function setChart(csvData,colorScale) {
 		.attr("width", chartInnerWidth)
 		.attr("height", chartInnerHeight)
 		.attr("transform", translate);
-	
-	
-	//*changed 463 = chartHeight
+
 	var yScale = d3.scaleLinear()
-		.range([chartHeight,0])		//* changed 463 = chartHeight
+		.range([chartHeight,0])		
 		.domain([0,100]);
-								//* this changes the max value on the 'y' scale
-	
-	
-	//* Set Bars for each State
 	var bars = chart.selectAll(".bar")
 		.data(csvData)
 		.enter()
 		.append("rect")
-	
-		//* Sort attribute values of bar
 		.sort(function(a, b) {
 			
 			//* Order the bars largest to smallest
 			return b[expressed] - a[expressed]
 		})
-	
-		//* Create a bar for each state using state abbreviation
 		.attr("class", function(d){
 			return "bar " + d.STATE_ABBR;
 		})
-	
 		.attr("width", chartInnerWidth / csvData.length - 1)
-	
-		//* Add mouseover on bars in the chart
-		//* Pass the name of the 'highlight' function
 		.on("mouseover", highlight)
-	
 		.on("mouseout", dehighlight)	
-	
-		//* listener for labeling each bar
 		.on("mousemove", moveLabel);	
 	
 	
@@ -331,26 +242,16 @@ function setChart(csvData,colorScale) {
 		.attr("y", 40)
 		.attr("class", "chartTitle")
 		.text("Number of Variable " + expressed[3] + " in each state");
-		
-	
-	//* Create Vertical (Y) Axis Generator
+
 	var yAxis = d3.axisLeft()
-		.scale(yScale);
-		// .orient("left");
-	
-	
-	//* Display the Y Axis on the bar chart
-	//* on left side of chart
-	
+		.scale(yScale);	
 	var axis = chart.append("g")
 		.attr("class","axis")
 		.attr("transform", translate)
 		.call(yAxis);					
 	//* Set Bar Position, heights and colors 
 	updateChart(bars, csvData.length, colorScale);
-	
-	
-}; //* end setChart()
+}; 
 	
 //* Function to reset the element style on mouseout	
 function dehighlight(props) {
@@ -372,12 +273,7 @@ function dehighlight(props) {
 		.remove();
 	
 	
-	function getStyle(element, styleName) {
-		
-		//* Arguments
-		//* element = current element in the DOM, represented by keyword 'this'
-		//* styleName = style property
-		
+	function getStyle(element, styleName) {		
 		var styleText = d3.select(element)
 			.select("desc")
 			.text();	// return the text content
@@ -388,13 +284,8 @@ function dehighlight(props) {
 		
 	};
 }; //* end dehighlight()
-	
-	
 //* Function to Test for Data Value and Return a color
 function choropleth(props, colorScale) {
-	
-	console.log("in choropleth() ...");
-	
 	//* Make sure attribute value is a number
 	var val = parseFloat(props[expressed]);
 	
@@ -403,9 +294,9 @@ function choropleth(props, colorScale) {
 		return colorScale(val);
 	} else {
 		return "#CCC";
-	}; // end if/else
+	};
 	
-}; //* end choropleth()
+}; 
 //* Function to Create a Dropdown Menu for Attribute Selection
 function createDropdown(csvData){
 	
@@ -415,7 +306,7 @@ function createDropdown(csvData){
 	var dropdown = d3.select("body")
 		.append("select")
 		.attr("class", "dropdown")
-		.on("change", function() {		//* listener for new selection
+		.on("change", function() {	
 			changeAttribute(this.value,csvData)
 		});
 	
@@ -434,10 +325,7 @@ function createDropdown(csvData){
 		.attr("value", function(d) { return d})
 		.text(function(d){ return d});
 	
-}; //* end createDropdown()
-	
-//* Function to position, size and color bars in the chart
-//* Called from both: setChart() and changeAttribute()
+}; 
 
 function updateChart(bars, n, colorScale) {
 	console.log("in updateChart() ");
@@ -510,8 +398,6 @@ function updateChart(bars, n, colorScale) {
 	
 	var chartTitle = d3.select(".chartTitle")
 		.text(newTitle)
-		/* .append("text") */
-		/* .append("tspan") */
 		.attr("x","50");
 	
 	chartTitle.append("tspan")
@@ -520,35 +406,22 @@ function updateChart(bars, n, colorScale) {
 		.text(secondTitle);
 
 	
-}; //* end updateChart()
-	
-//* ------------
-//* highlight()
-//* ------------
-//* Function to highlight states and bars
+}; 
 function highlight(props) {
 	
 	console.log("in highlight()");
 	var selected = d3.selectAll("." + props.STATE_ABBR)	
-		.style("stroke", "blue")		//* change stroke color
-		// .style("fill", "blue")		//* fill color
+		.style("stroke", "blue")
 		.style("opacity", .5)			
-		.style("stroke-width","2");		//* change stroke width
+		.style("stroke-width","2");		
 	
 	
-	//* Call function to label selected state 	
+
 	setLabel(props);
 	
 	console.log(" props.State: ",props.STATE_ABBR, " State: ", props.STATE_ABBR);
 	
-};  //* end highlight()
-	
-	
-//* -----------------
-//* changeAttribute()
-//* -----------------
-	
-//* Dropdown Select Change Listener Handler
+}; 
 function changeAttribute(attribute, csvData) {
 	console.log("in changeAttribute() ...");
 	expressed = attribute;
