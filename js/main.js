@@ -34,7 +34,7 @@ function setMap(){
 	var projection = d3.geoAlbers()
 		.center([4.32,42]) 
 		.rotate([101.64,4.55,0])
-		.scale(1000)
+		.scale(950)
 		.translate([width /2, height / 2]);
 
 	var path = d3.geoPath()
@@ -516,6 +516,5 @@ function moveLabel() {
 		.style("left", x + "px")
 		.style("top", y + "px");
 };
-
 
 })();  //* end self-executing anonymous function
