@@ -15,31 +15,68 @@
 		<h1 style="text-align:center;">Public Lands in the United States</h1>
 
 		<p style="text-align:center;">
-		"The nation behaves well if it treats the natural resources as assets which it must turn over to the next generation increased and not impaired in value. Conservation means development as much as it does protection." -Theodore Roosevelt </p>
+		"The nation behaves well if it treats the natural resources as assets which it must turn over to the next generation increased and not impaired in value. Conservation means development as much as it does protection." -Theodore Roosevelt 
 
-		<p style="text-align:center;">This map explores the public lands in each state across the United States of America.</p>
+		This map explores the public lands in each state across the United States of America.<br> Sources: https://www.nrcm.org/documents/publiclandownership.pdf</p>
+<!-- 			
 	<div id= sources>
-		<br>Due to the massive amounts of public lands in Alaska, it was left out of this visualization.
-		<br>Alaska's public land is as follows: 
-		<br>Total Area of State: 365039.4
-		<br>Total Area of State	Acres owned by Fed Gov't: 219900
-		<br>% of State's Total Area Federally Owned: 60.24%
-		<br>Acres Owned by State: 105800
-		<br>% of State's Total Area State Owned: 28.98
-		<br>BLM: 69711
-		<br>USFS: 22219
-		<br>NPS: 52709
-		<br>NWR: 75261
-		<br>Army Corps Engineers: 19
-		Tribal Lands: 86.8
 		<h4>Sources: https://www.nrcm.org/documents/publiclandownership.pdf</h4>
-		</div>
+		</div> -->
 
+		<script>
+		function alaska(){
+	var popup = document.getElementById("myPopup");
+	popup.classList.toggle("show");
+}
+		</script>
+		<div class="popup" onclick="alaska()">The sheer size and quantities of public in the state of Alaksa skew the visulization. Since it was omitted, click here to see Alaska Figures!
+				<span class="popuptext" id="myPopup">
+				<style>
+						table, th, td {
+						  border: .5px solid black;
+						  border-collapse: collapse;
+						  background-color: azure
+						}
+						th, td {
+						  padding: 10px;
+						}
+						</style>				
+						<table style="right: 50%;width: 35%;bottom: 50px;position: fixed;">
+											<tr>
+											  <th>Total Area of State</th>
+											  <th>Acres ownedFederal Government</th> 
+											  <th>% Federally Owned</th>
+											  <th>Acres Owned State</th>
+											  <th>% State Owned</th>
+											  <th>BLM</th>
+											  <th>USFS</th>
+											  <th>NPS</th>
+											  <th>NWR</th>
+											  <th>Army Corps Engineers</th>
+											  <th>Tribal Lands</th>
+											</tr>
+											<tr>
+											  <td>365039.4</td>
+											  <td>219900</td>
+											  <td>60.24%</td>
+											  <td>105800</td>
+											  <td>28.98</td>
+											  <td>69711</td>
+											  <td>22219</td>
+											  <td>52709</td>
+											  <td>75261</td>
+											  <td>19</td>
+											  <td>86.8</td>
+											</tr>
+						</table>
+					</span>
+
+					
 		<div id="mapTitle">
 		
-		</div>
-		<div id="map">
-		</div>
+			</div>
+			<div id="map">
+			</div>
 	
 
 		<script type="text/javascript" src="lib/jquery-3.3.1.js"></script>
@@ -47,5 +84,4 @@
 		<script type="text/javascript" src="lib/topojson.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>
 	</body>
-
 </html>

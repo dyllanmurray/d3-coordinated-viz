@@ -22,7 +22,7 @@ var yScale = d3.scaleLinear()
 window.onload = setMap();
 function setMap(){
 	var width = window.innerWidth *.5,		
-		height = 1050;
+		height = 550;
 	//* Create a new SVG container for the map
 	var map = d3.select("body")
 		.append("svg")
@@ -32,9 +32,9 @@ function setMap(){
 	
 	//* Create an Albers Equal Area Projection
 	var projection = d3.geoAlbers()
-		.center([3.5,38]) 
+		.center([4.32,42]) 
 		.rotate([101.64,4.55,0])
-		// .scale()
+		.scale(1000)
 		.translate([width /2, height / 2]);
 
 	var path = d3.geoPath()
@@ -364,14 +364,14 @@ function updateChart(bars, n, colorScale) {
 		newTitle = "Acres owned by Fed Gov't";
 		secondTitle = "Thousands (000's) Acres";
 	} else if (expressed == "% of State's Total Area Federally Owned"){
-		newTitle = "% of State's Total Area Federally Owned";
-		secondTitle = "%";
+		newTitle = "Percent of State's Total Area Federally Owned";
+		secondTitle = ''
 	} else if (expressed == "Acres Owned by State"){
 		newTitle = "Acres Owned by State";
 		secondTitle = "Thousands (000's) Acres";
 	} else if (expressed == "% of State's Total Area State Owned"){
-		newTitle = "% of State's Total Area State Owned";
-		secondTitle = "%";
+		newTitle = "Percent of State's Total Area State Owned";
+		
 	} else if (expressed == "BLM"){
 		newTitle = "BLM";
 		secondTitle = "Thousands (000's) Acres";
@@ -516,4 +516,6 @@ function moveLabel() {
 		.style("left", x + "px")
 		.style("top", y + "px");
 };
+
+
 })();  //* end self-executing anonymous function
