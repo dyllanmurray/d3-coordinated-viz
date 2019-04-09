@@ -178,6 +178,9 @@ function setMap(){
 function makeColorScale(data) {
 	console.log(" in makeColorScale()");
 	var colorClasses = [
+		// '#8c510a','#d8b365','#f6e8c3','#c7eae5','#5ab4ac','#01665e'
+		// '#ca0020','#f4a582','#f7f7f7','#92c5de','#0571b0'
+		// '#543005','#8c510a','#bf812d','#dfc27d','#f6e8c3','#c7eae5','#80cdc1','#35978f','#01665e','#003c30'
 		'#d7191c','#fdae61','#ffffbf','#a6d96a','#1a9641'
 	];
 
@@ -415,15 +418,12 @@ function highlight(props) {
 		.style("opacity", .5)			
 		.style("stroke-width","2");		
 	
-	
-
 	setLabel(props);
 	
 	console.log(" props.State: ",props.STATE_ABBR, " State: ", props.STATE_ABBR);
 	
 }; 
 function changeAttribute(attribute, csvData) {
-	console.log("in changeAttribute() ...");
 	expressed = attribute;
 	var colorScale = makeColorScale(csvData);
 
@@ -488,9 +488,6 @@ function setLabel(props) {
 
 //* Function to move infolabel with mouse
 function moveLabel() {
-	
-	console.log("in moveLabel() ");
-	
 	//* Get Width of label
 	var labelWidth = d3.select(".infolabel")
 		.node()
