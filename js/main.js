@@ -95,7 +95,6 @@ function setMap(){
 			.attr("class",function(d) {
 
 				//* Print state name
-				console.log("state: ",d.properties.State, " STATE_ABBR: ", d.properties.STATE_ABBR)
 				return "state " + d.properties.STATE_ABBR;	
 				
 			})
@@ -158,8 +157,6 @@ function setMap(){
 					
 						//* Assign attribute and value to geojson properties
 						geojsonProps[attr] = val;
-						
-						console.log(" state: ", geojsonProps.STATE_ABBR, " attr : ",attr, " ", geojsonProps[attr])
 					});
 					
 				}; // end if (geojsonKey)
@@ -176,7 +173,6 @@ function setMap(){
 
 //* Color Scale Generator
 function makeColorScale(data) {
-	console.log(" in makeColorScale()");
 	var colorClasses = [
 		// '#8c510a','#d8b365','#f6e8c3','#c7eae5','#5ab4ac','#01665e'
 		// '#ca0020','#f4a582','#f7f7f7','#92c5de','#0571b0'
@@ -303,8 +299,6 @@ function choropleth(props, colorScale) {
 //* Function to Create a Dropdown Menu for Attribute Selection
 function createDropdown(csvData){
 	
-	console.log("in createDropdown() ...");
-	
 	//* Add Selected Element
 	var dropdown = d3.select("body")
 		.append("select")
@@ -331,7 +325,6 @@ function createDropdown(csvData){
 }; 
 
 function updateChart(bars, n, colorScale) {
-	console.log("in updateChart() ");
 	var yAxis = d3.axisLeft()
 		.scale(yScale);
 	
@@ -346,7 +339,6 @@ function updateChart(bars, n, colorScale) {
 		})
 		//* this then re-draws the bars from the bottom up (which is correct)
 		.attr("y", function(d,i) {
-			console.log(" yScale(parseFloat(d[expressed])): ",yScale(parseFloat(d[expressed])));
 		
 			return yScale(parseFloat(d[expressed])) + topBottomPadding;
 		})
@@ -411,16 +403,12 @@ function updateChart(bars, n, colorScale) {
 	
 }; 
 function highlight(props) {
-	
-	console.log("in highlight()");
 	var selected = d3.selectAll("." + props.STATE_ABBR)	
 		.style("stroke", "blue")
 		.style("opacity", .5)			
 		.style("stroke-width","2");		
 	
 	setLabel(props);
-	
-	console.log(" props.State: ",props.STATE_ABBR, " State: ", props.STATE_ABBR);
 	
 }; 
 function changeAttribute(attribute, csvData) {
@@ -442,7 +430,6 @@ function changeAttribute(attribute, csvData) {
 		.duration(1000)
 		//state gets re-drawn in a new color
 		.style("fill", function(d) {
-			console.log("changeAttributes() d.properties: ", d.properties);
 			
 			return choropleth(d.properties,colorScale);
 		});
@@ -459,8 +446,6 @@ function changeAttribute(attribute, csvData) {
 	}).transition()
 	
 	.delay(function(d,i) {
-		
-		console.log(" d: ", d + " i: ",i);
 		
 		//* Delay start of animation for 20 milliseconds
 		return i * 20
